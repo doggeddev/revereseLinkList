@@ -8,11 +8,11 @@ import java.util.Stack;
 public class PathFinder {
 
 	private Board board;
-	private Stack<Integer[][]> pathFound = new Stack<>();
-	int startPositionRow = 0;
-	int startPositionCol = 0;
-	int endPositionRow = 0;
-	int endPositionCol = 0;
+	private Stack<int[]> pathFound = new Stack<int[]>();
+	private int startPositionRow = 0;
+	private int startPositionCol = 0;
+	private int endPositionRow = 0;
+	private int endPositionCol = 0;
 
 	PathFinder(int x, int y) {
 		board = new Board(x, y);
@@ -41,10 +41,9 @@ public class PathFinder {
 		board.fillWithRandomValues();
 	}
 
-	void drawVisited()
-
-	{
+	void drawVisited() {
 		board.drawBoard(board.getVisited());
+
 	}
 
 	void drawBoard()
@@ -53,61 +52,66 @@ public class PathFinder {
 		board.drawBoard(board.getBoard());
 	}
 
+	void startSearch(int[] tempStartPosition) {
+		System.out.println("at start search");
 
-	void startSearch() {
-
-		int currentRow = startPositionRow;
-		int currentCol = startPositionCol;
-
-		searchLoop(currentRow, currentCol);
-
+		int[] startposition = tempStartPosition; //{startPositionRow, startPositionCol};
+		searchLoop(startposition);
 	}
 
-	private void searchLoop(int currentRow, int currentCol) {
-		checkNorth(currentRow, currentCol);
-		checkSouth(currentRow, currentCol);
-		checkEast(currentRow, currentCol);
-		checkWest(currentRow, currentCol);
-	}
+	private void search(int[] currentPosition) {
 
+		int currentRow = currentPosition[0];
+		int currentCol = currentPosition[1];
+		int rowOffset = 0;
+		int colOffset = 0;
 
-	private void checkNorth(int currentRow, int currentCol) {
-		if (currentRow > 0) {
-			if (board.getPathAvailable(currentRow - 1, currentCol)) {
-				searchLoop(currentRow - 1, currentCol);
-			}
+		switch (currentRow) {
+			case 0:
+				break;
+			case 9:
+				break;
+			default:
+				rowOffset = 1;
 		}
 
-	}
-
-	private void checkSouth(int currentRow, int currentCol) {
-		if (currentRow < board.getRowLength() - 1) {
-			if (board.getPathAvailable(currentRow + 1, currentCol)) {
-				searchLoop(currentRow + 1, currentCol);
-			}
+		switch (currentCol) {
+			case 0:
+				break;
+			case 9:
+				break;
+			default:
+				colOffset = 1;
 		}
 
-	}
 
-	private void checkEast(int currentRow, int currentCol) {
-		if (currentCol < board.getColLength() - 1) {
-			if (board.getPathAvailable(currentRow, currentCol + 1)) {
-				searchLoop(currentRow, currentCol + 1);
-			}
-		}
+		search(checkNorth(currentRow - rowOffset, rowOffset, currentCol, colOffset));
+
 
 	}
 
-	private void checkWest(int currentRow, int currentCol) {
-		if (currentCol > 0) {
-			if (board.getPathAvailable(currentRow, currentCol - 1)) {
-				searchLoop(currentRow, currentCol - 1);
-			}
-		}
+	private int[] checkNorth(int row, int rowOffset, int currentRow, int currentCol) {
 
+
+		return null;
 	}
 
+	private int[] checkSouth(int currentRow, int currentCol) {
 
+		return null;
+	}
+
+	private int[] checkEast(int currentRow, int currentCol) {
+
+
+		return null;
+	}
+
+	private int[] checkWest(int currentRow, int currentCol) {
+
+
+		return null;
+	}
 }
 
 

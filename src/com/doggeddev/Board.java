@@ -51,10 +51,6 @@ class Board {
 		return this;
 	}
 
-	boolean[][] getVisited() {
-		return visited;
-	}
-
 	private void initBoard() {
 		for (int i = 0; i < col; i++) {
 			for (int j = 0; j < row; j++) {
@@ -65,34 +61,33 @@ class Board {
 	}
 
 	void drawBoard(char[][] boardToDraw) {
-		StringBuilder sb1 = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < col; i++) {
-			sb1.append("[ |");
+			sb.append("[ |");
 			for (int j = 0; j < col; j++) {
-				sb1.append(boardToDraw[i][j]).append(" | ");
+				sb.append(boardToDraw[i][j]).append(" | ");
 			}
-			sb1.append("]\n");
+			sb.append("]\n");
 
 		}
-		System.out.println(sb1.toString());
+		System.out.println(sb.toString());
 	}
 
 	void drawBoard(boolean[][] boardToDraw) {
-		StringBuilder sb2 = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < col; i++) {
-			sb2.append("[ |");
+			sb.append("[ |");
 			for (int j = 0; j < col; j++) {
-				sb2.append(boardToDraw[i][j]).append(" | ");
+				sb.append(boardToDraw[i][j]).append(" | ");
 			}
-			sb2.append("]\n");
+			sb.append("]\n");
 
 		}
-		System.out.println(sb2.toString());
+		System.out.println(sb.toString());
 	}
 
 
 	boolean getPathAvailable(int currentRow, int currentCol) {
-
 		try {
 			if (board[currentRow][currentCol] == blocked) {
 				return false;
@@ -107,7 +102,16 @@ class Board {
 		return row;
 	}
 
-	public int getColLength() {
+	int getColLength() {
 		return col;
 	}
+
+	public boolean getPositionVisitStatus(int currentRow, int currentCol) {
+		return visited[currentRow][currentCol];
+	}
+
+	public boolean[][] getVisited() {
+		return visited;
+	}
+
 }

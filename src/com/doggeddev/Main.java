@@ -10,8 +10,10 @@ public class Main {
 		pathTest.setEndPosition(9, 9);
 		pathTest.setStartingPosition(0, 0);
 		pathTest.drawBoard();
-		pathTest.drawVisited();
+		//pathTest.drawVisited();
 
+		int[] tempStartPosition = {1,0};
+		pathTest.startSearch(tempStartPosition);
 
 	}
 
